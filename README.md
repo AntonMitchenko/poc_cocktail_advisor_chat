@@ -101,20 +101,26 @@
 
 ```
 ├── data/
-│   └── cocktails.csv        # Dataset
+│   ├── raw/                     # Raw datasets
+│   ├── preprocessed/            # Preprocessed datasets
+│   └── embeddings/              # Embedding files and FAISS index
 ├── app/
-│   ├── main.py              # Main application logic
-│   ├── database.py          # Vector database operations
-│   ├── model.py             # LLM integration
-│   ├── rag.py               # Retrieval-Augmented Generation logic
-│   └── utils.py             # Utility functions
-├── tests/
-│   └── test_app.py          # Unit tests
-├── requirements.txt         # Dependencies
-├── .env                     # Environment variables
-└── README.md                # Documentation
-```
+│   ├── main.py                  # Main application logic (CLI or Streamlit entry point)
+│   ├── streamlit_app.py         # Streamlit web interface
+│   ├── database.py              # Vector database operations
+│   ├── model.py                 # LLM integration (e.g., OpenAI GPT or HuggingFace)
+│   ├── query.py                 # Query vector database and retrieve results
+│   └── rag.py                   # Retrieval-Augmented Generation logic
+├── models/
+│   ├── __init__.py              # Package initializer
+│   ├── embedder.py              # Embedding generation logic
+│   └── vector_store.py          # Vector database setup and maintenance
+├── requirements.txt             # Project dependencies
+├── .env                         # Environment variables (API keys, config)
+├── README.md                    # Project documentation
+└── .gitignore                   # Ignored files and folders
 
+```
 ---
 
 ## Future Improvements
