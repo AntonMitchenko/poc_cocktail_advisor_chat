@@ -4,10 +4,10 @@ import ast
 from sentence_transformers import SentenceTransformer
 import pickle
 
-file_path = "../data/cocktails.csv"
+file_path = "../../data/cocktails.csv"
 
-embeddings_path = "../data/cocktail_embeddings.pkl"
-preprocessed_path = "../data/preprocessed_cocktails.csv"
+embeddings_path = "../../data/cocktail_embeddings.pkl"
+preprocessed_path = "../../data/preprocessed_cocktails.csv"
 
 '''
 Create preprocessed coctail dataset

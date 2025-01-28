@@ -4,7 +4,7 @@ import pickle
 from sentence_transformers import SentenceTransformer
 
 # Load embeddings
-embeddings_path = "../data/cocktail_embeddings.pkl"
+embeddings_path = "../../data/cocktail_embeddings.pkl"
 with open(embeddings_path, 'rb') as f:
     data = pickle.load(f)
 

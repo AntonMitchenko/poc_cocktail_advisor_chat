@@ -1,39 +1,58 @@
 import streamlit as st
-from datetime import datetime
+import faiss
+import pickle
+from sentence_transformers import SentenceTransformer
+from models import search_similar, generate_response_with_rag
 
-# Page Configuration
-st.set_page_config(page_title="Chat Interface", layout="centered")
+# Load resources
+@st.cache_resource
+def load_model():
+    return SentenceTransformer('all-MiniLM-L6-v2')
 
-# Title
-st.title("Chat Interface with Streamlit")
 
-# Session State for chat history
-if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []
+@st.cache_resource
+def load_faiss_index():
+    return faiss.read_index("./app/models/cocktail_faiss_index")
 
-# Input form for user questions
-with st.form("chat_form"):
-    user_input = st.text_input("Enter your question:", placeholder="Type something...")
-    submit_button = st.form_submit_button("Send")
 
-# Placeholder for chat conversation
-chat_placeholder = st.container()
+@st.cache_resource
+def load_data():
+    with open("./data/cocktail_embeddings.pkl", 'rb') as f:
+        return pickle.load(f)
 
-# Logic to process user input and append to chat history
-if submit_button and user_input.strip():
-    # Append user question to chat history
-    st.session_state.chat_history.append({"sender": "User", "message": user_input, "timestamp": datetime.now()})
 
-    # Generate a mock response (replace this with your model's logic)
-    response = f"This is a response to: '{user_input}'"
+# Initialize resources
+st.title("Cocktail Chatbot")
+st.write("Ask anything about cocktails or get recommendations!")
 
-    # Append the model's response to chat history
-    st.session_state.chat_history.append({"sender": "Model", "message": response, "timestamp": datetime.now()})
+model = load_model()
+index = load_faiss_index()
+data = load_data()
 
-# Display chat history in the chat placeholder
-with chat_placeholder:
-    for chat in st.session_state.chat_history:
-        if chat["sender"] == "User":
-            st.markdown(f"**You:** {chat['message']}")
-        else:
-            st.markdown(f"**Model:** {chat['message']}")
+# Input query from the user
+query = st.text_input("Your query:")
+
+if query:
+    # Search similar cocktails
+    with st.spinner("Searching for relevant cocktails..."):
+        results = search_similar(query, model, index, data)
+
+    # Display search results
+    st.subheader("Relevant Cocktails:")
+    if results:
+        for result in results:
+            st.markdown(f"**{result['name']}**")
+            st.markdown(f"Ingredients: {', '.join(result['ingredients'])}")
+            st.markdown(f"Instructions: {result['instructions']}")
+            st.markdown("---")
+    else:
+        st.write("No relevant cocktails found.")
+
+    # Generate a response using RAG
+    with st.spinner("Generating response..."):
+        response = generate_response_with_rag(query, results)
+
+    # Display the generated response
+    st.subheader("Chatbot Response:")
+    st.write(response)
+

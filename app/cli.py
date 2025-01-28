@@ -1,5 +1,5 @@
-from models.query import search_similar
-from models.rag import generate_response_with_rag
+from app.models.query import search_similar
+from app.models.rag import generate_response_with_rag
 from sentence_transformers import SentenceTransformer
 import faiss
 import pickle
