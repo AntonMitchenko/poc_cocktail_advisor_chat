@@ -13,7 +13,6 @@ anyio==4.5.2
     #   httpx
     #   openai
     #   starlette
-    #   watchfiles
 attrs==25.1.0
     # via
     #   jsonschema
@@ -37,7 +36,6 @@ colorama==0.4.6
     # via
     #   click
     #   tqdm
-    #   uvicorn
 distro==1.9.0
     # via openai
 exceptiongroup==1.2.2
@@ -46,6 +44,15 @@ faiss-cpu==1.8.0.post1
     # via -r requirements.in
 fastapi==0.115.7
     # via -r requirements.in
+filelock==3.16.1
+    # via
+    #   huggingface-hub
+    #   torch
+    #   transformers
+fsspec==2024.12.0
+    # via
+    #   huggingface-hub
+    #   torch
 gitdb==4.0.12
     # via gitpython
 gitpython==3.1.44
@@ -56,12 +63,15 @@ h11==0.14.0
     #   uvicorn
 httpcore==1.0.7
     # via httpx
-httptools==0.6.4
-    # via uvicorn
 httpx==0.28.1
     # via
     #   -r requirements.in
     #   openai
+huggingface-hub==0.28.0
+    # via
+    #   sentence-transformers
+    #   tokenizers
+    #   transformers
 idna==3.10
     # via
     #   anyio
@@ -76,6 +86,7 @@ jinja2==3.1.5
     #   -r requirements.in
     #   altair
     #   pydeck
+    #   torch
 jiter==0.8.2
     # via openai
 joblib==1.4.2
@@ -90,8 +101,12 @@ markupsafe==2.1.5
     # via jinja2
 mdurl==0.1.2
     # via markdown-it-py
+mpmath==1.3.0
+    # via sympy
 narwhals==1.24.0
     # via altair
+networkx==3.1
+    # via torch
 numpy==1.24.4
     # via
     #   -r requirements.in
@@ -102,19 +117,24 @@ numpy==1.24.4
     #   scikit-learn
     #   scipy
     #   streamlit
+    #   transformers
 openai==1.60.2
     # via -r requirements.in
 packaging==24.2
     # via
     #   altair
     #   faiss-cpu
+    #   huggingface-hub
     #   streamlit
+    #   transformers
 pandas==2.0.3
     # via
     #   -r requirements.in
     #   streamlit
 pillow==10.4.0
-    # via streamlit
+    # via
+    #   sentence-transformers
+    #   streamlit
 pkgutil-resolve-name==1.3.10
     # via jsonschema
 protobuf==5.29.3
@@ -134,29 +154,42 @@ pygments==2.19.1
 python-dateutil==2.9.0.post0
     # via pandas
 python-dotenv==1.0.1
-    # via
-    #   -r requirements.in
-    #   uvicorn
+    # via -r requirements.in
 pytz==2024.2
     # via pandas
 pyyaml==6.0.2
-    # via uvicorn
+    # via
+    #   huggingface-hub
+    #   transformers
 referencing==0.35.1
     # via
     #   jsonschema
     #   jsonschema-specifications
+regex==2024.11.6
+    # via transformers
 requests==2.32.3
-    # via streamlit
+    # via
+    #   huggingface-hub
+    #   streamlit
+    #   transformers
 rich==13.9.4
     # via streamlit
 rpds-py==0.20.1
     # via
     #   jsonschema
     #   referencing
+safetensors==0.5.2
+    # via transformers
 scikit-learn==1.3.2
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   sentence-transformers
 scipy==1.10.1
-    # via scikit-learn
+    # via
+    #   scikit-learn
+    #   sentence-transformers
+sentence-transformers==3.2.1
+    # via -r requirements.in
 six==1.17.0
     # via python-dateutil
 smmap==5.0.2
@@ -169,42 +202,51 @@ starlette==0.44.0
     # via fastapi
 streamlit==1.40.1
     # via -r requirements.in
+sympy==1.13.3
+    # via torch
 tenacity==9.0.0
     # via streamlit
 threadpoolctl==3.5.0
     # via scikit-learn
+tokenizers==0.20.3
+    # via transformers
 toml==0.10.2
     # via streamlit
+torch==2.4.1
+    # via sentence-transformers
 tornado==6.4.2
     # via streamlit
 tqdm==4.67.1
     # via
     #   -r requirements.in
+    #   huggingface-hub
     #   openai
+    #   sentence-transformers
+    #   transformers
+transformers==4.46.3
+    # via sentence-transformers
 typing-extensions==4.12.2
     # via
     #   altair
     #   annotated-types
     #   anyio
     #   fastapi
+    #   huggingface-hub
     #   openai
     #   pydantic
     #   pydantic-core
     #   rich
     #   starlette
     #   streamlit
+    #   torch
     #   uvicorn
 tzdata==2025.1
     # via pandas
 urllib3==2.2.3
     # via requests
-uvicorn[standard]==0.33.0
+uvicorn==0.33.0
     # via -r requirements.in
 watchdog==4.0.2
     # via streamlit
-watchfiles==0.24.0
-    # via uvicorn
-websockets==13.1
-    # via uvicorn
 zipp==3.20.2
     # via importlib-resources

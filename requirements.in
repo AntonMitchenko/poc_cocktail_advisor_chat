@@ -1,12 +1,13 @@
 streamlit
 fastapi
-uvicorn[standard]
+uvicorn
 openai
 python-dotenv
-faiss-cpu  # For local vector database
+faiss-cpu
 pandas
 numpy
-scikit-learn  # For potential vectorization and data preprocessing
-tqdm  # For progress bars during data processing
-httpx  # For async HTTP requests
-Jinja2  # For rendering templates (if needed in the web UI)
+scikit-learn
+tqdm
+httpx
+Jinja2
+sentence_transformers
