@@ -35,8 +35,8 @@
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/cocktail-advisor.git
-   cd cocktail-advisor
+   git clone https://github.com/AntonMitchenko/poc_cocktail_advisor_chat.git
+   cd poc_cocktail_advisor_chat
    ```
 
 2. Set up a virtual environment:
