@@ -16,7 +16,7 @@ def generate_response_with_rag(query, results):
         messages = [
             {"role": "system", "content": main_prompt},
             {"role": "user", "content": query},
-            {"role": "assistant", "content": results['ingredients']},  # Optional if results need to be provided
+            {"role": "assistant", "content": str(results)},  # Optional if results need to be provided
         ]
         response = client.chat.completions.create(
             model="gpt-4o-mini",

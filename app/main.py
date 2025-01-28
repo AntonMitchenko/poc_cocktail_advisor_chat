@@ -42,7 +42,7 @@ if query:
     if results:
         for result in results:
             st.markdown(f"**{result['name']}**")
-            st.markdown(f"Ingredients: {', '.join(result['ingredients'])}")
+            st.markdown(f"Ingredients: {result['ingredients']}")
             st.markdown(f"Instructions: {result['instructions']}")
             st.markdown("---")
     else:
