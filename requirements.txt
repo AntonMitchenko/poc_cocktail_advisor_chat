@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+openai
+python-dotenv
+faiss-cpu  # For local vector database
+pandas
+numpy
+scikit-learn  # For potential vectorization and data preprocessing
+tqdm  # For progress bars during data processing
+httpx  # For async HTTP requests
+Jinja2  # For rendering templates (if needed in the web UI)
